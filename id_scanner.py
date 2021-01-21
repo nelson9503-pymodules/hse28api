@@ -2,6 +2,19 @@ from .web_requests import requests_text
 import threading
 
 
+def GetNumOfProperties(propertyType: str = "rent") -> int:
+    """
+    Get the number of avalible properties.
+    """
+    url = "https://www.28hse.com/{}".format(propertyType)
+    lines = requests_text(url).split("\n")
+    for line in lines:
+        if "找到了樓盤: _" in line:
+            num = line.replace("找到了樓盤:", "").replace(" ", "").replace("_", "")
+            return int(num)
+    return 0
+
+
 def ScanID(propertyType: str = "rent", numOfThread: int = 32) -> list:
     """
     Scan all the properties id avalible on 28 House.

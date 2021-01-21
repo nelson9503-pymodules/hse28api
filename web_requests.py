@@ -4,7 +4,7 @@ import html2text
 # This script store the basic web request methods.
 
 
-def requests_text(url: str) -> list:
+def requests_text(url: str) -> str:
     """
     Request text from the url.
     The return text has been removed the html tags.
